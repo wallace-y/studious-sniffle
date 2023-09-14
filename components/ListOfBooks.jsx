@@ -6,11 +6,19 @@ import {
   StyleSheet,
   Text,
   StatusBar,
+  Image,
 } from "react-native";
 
-const Item = ({ title }) => (
+const Item = ({ title, cover, index }) => (
   <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.title}>{title || "unknown"}</Text>
+
+    <Image
+      style={styles.cover}
+      source={{
+        uri: `https://covers.openlibrary.org/b/id/${cover}-M.jpg`
+      }}
+    />
   </View>
 );
 
@@ -18,8 +26,11 @@ const ListOfBooks = ({ data }) => {
   return (
     <FlatList
       data={data}
-      renderItem={({ item }) => <Item title={item.title} />}
-      keyExtractor={(item) => item.id}
+      numColumns={2}
+      renderItem={({ item, index }) => (
+        <Item index={index} cover={item.cover_i} title={item.title} />
+      )}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };
@@ -27,16 +38,31 @@ const ListOfBooks = ({ data }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    marginTop: 50,
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    flex: 1,
+    backgroundColor: "#F2F2F2",
+    padding: 5,
+    margin: 8,
+    width: "50%"
   },
   title: {
-    fontSize: 32,
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 5
+  },
+  cover: {
+    width: "100%",
+    height: 200,
+    resizeMode: "cover"
+  },
+  cover_short: {
+    width: "100%",
+    height: 150,
+    resizeMode: "cover"
   },
 });
 
