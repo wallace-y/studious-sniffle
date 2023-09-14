@@ -46,7 +46,28 @@ export default function SearchBar() {
 
   return (
     <View style={styles.container}>
-      <Text>Book Searcher</Text>
+      <View>
+        <Text style={styles.title}>Book Scroller</Text>
+      </View>
+      <View>
+        {/* conditionally loading the search bar */}
+        {loading ? (
+          <View>
+            <Text>Please Wait...Patience is Virtue</Text>
+            <ActivityIndicator size="large" color="#00ff00" />
+          </View>
+        ) : (
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setQuery(text)}
+              value={query}
+              placeholder="What are you looking for?"
+            ></TextInput>
+            <Button onPress={handleSearch} title="Search"></Button>
+          </View>
+        )}
+      </View>
 
       {error != "" ? (
         <Text>Oops there was an error. "To Err is Human" Error: {error}</Text>
@@ -54,22 +75,6 @@ export default function SearchBar() {
         false
       )}
 
-      {/* conditionally loading the search bar */}
-      {loading ? (
-        <View>
-          <Text>Please Wait...Patience is Virtue</Text>
-          <ActivityIndicator size="large" color="#00ff00" />
-        </View>
-      ) : (
-        <View>
-          <TextInput
-            onChangeText={(text) => setQuery(text)}
-            value={query}
-            placeholder="What are you looking for?"
-          ></TextInput>
-          <Button onPress={handleSearch} title="Search"></Button>
-        </View>
-      )}
       {/* Search Bar Output conditionally loaded */}
       {data.length != 0 ? (
         <SafeAreaView>
@@ -84,8 +89,20 @@ export default function SearchBar() {
 
 const styles = StyleSheet.create({
   container: {
-    alignContent: "center",
+    backgroundColor: "#f1f2f1"
+  },
+  title: {
+    paddingTop: 40,
+    width: "100%",
+    fontSize: 32,
+    textAlign: "center",
+    backgroundColor: "#F2F2F2",
+  },
+  inputContainer: {
     justifyContent: "center",
-    marginTop: 50,
+    flexDirection: "row",
+  },
+  input: {
+    textAlign: "center",
   },
 });
