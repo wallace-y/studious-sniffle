@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {
   SafeAreaView,
   View,
@@ -19,15 +20,17 @@ const Item = ({ title, cover, index }) => {
   } else if (index % 2 !== 0) {
     itemStyle = styles.itemRight;
   }
+
+
   return (
     <View style={[styles.item, itemStyle]}>
       <Image
-        style={index === 0 ? styles.coverShort : styles.cover}
+        style={styles.cover}
         source={{
           uri: `https://covers.openlibrary.org/b/id/${cover}-M.jpg`,
         }}
       />
-      {/* <Text style={styles.title}>{title.substr(0, 16) + "..."}</Text> */}
+      <Text style={styles.title}>{cover}</Text>
     </View>
   );
 };
@@ -57,26 +60,23 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     margin: 8,
-    width: "48%",
+    width: "46%",
     position: "relative",
     borderRadius: 20,
     marginBottom: 20,
-    shadowColor: "black",
-    shadowOffset: { width: -5, height: 15 },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    elevation: 3,
+    backgroundColor: "white",
+    elevation: 4,
   },
   itemOne: {
     height: 200,
   },
   itemThree: {
-    marginTop: 20,
+    marginTop: -40,
     height: 250,
   },
   itemLeft: {
-    marginTop: 20,
-    height: 300,
+    marginTop: -40,
+    height: 250,
     marginBottom: 20,
   },
   itemRight: {
@@ -101,15 +101,10 @@ const styles = StyleSheet.create({
   },
 
   cover: {
+    // backgroundColor: CanvasGradient(),
     width: "96%",
     height: "96%",
-    resizeMode: "cover",
-    borderRadius: 15,
-  },
-  coverShort: {
-    width: "96%",
-    height: "96%",
-    resizeMode: "cover",
+    resizeMode: "contain",
     borderRadius: 15,
   },
 });
