@@ -30,7 +30,6 @@ const Item = ({ title, cover, index }) => {
           uri: `https://covers.openlibrary.org/b/id/${cover}-M.jpg`,
         }}
       />
-      <Text style={styles.title}>{cover}</Text>
     </View>
   );
 };
