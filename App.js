@@ -4,10 +4,16 @@ import SearchBar from "./components/SearchBar";
 
 export default function App() {
   return (
-    <View>
+    <View style={styles.container}>
       <SearchBar />
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+  }
+});

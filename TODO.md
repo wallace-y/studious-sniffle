@@ -5,3 +5,5 @@
 - [] Add back links to Open Library from images
 - [] Style top banner
 - [] Style main content
+- [] Add detail page for each book
+- [] Add auto scroll feature 
