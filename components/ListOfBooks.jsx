@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {
-  SafeAreaView,
   View,
   FlatList,
   StyleSheet,
-  Text,
-  StatusBar,
   Image,
+  TouchableOpacity,
+  Linking,
 } from "react-native";
 
-const Item = ({ title, cover, index }) => {
+const Item = ({ title, cover, worksKey, index }) => {
   let itemStyle = styles.itemLeft; // Default style
 
   if (index === 0) {
@@ -23,12 +22,18 @@ const Item = ({ title, cover, index }) => {
 
   return (
     <View style={[styles.item, itemStyle]}>
-      <Image
-        style={styles.cover}
-        source={{
-          uri: `https://covers.openlibrary.org/b/id/${cover}-M.jpg`,
+      <TouchableOpacity
+        onPress={() => {
+          Linking.openURL(`https://openlibrary.org${worksKey}`);
         }}
-      />
+      >
+        <Image
+          style={styles.cover}
+          source={{
+            uri: `https://covers.openlibrary.org/b/id/${cover}-M.jpg`,
+          }}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -42,7 +47,12 @@ const ListOfBooks = ({ data }) => {
       numColumns={2}
       initialNumToRender={loadNum}
       renderItem={({ item, index }) => (
-        <Item index={index} cover={item.cover_i} title={item.title} />
+        <Item
+          index={index}
+          cover={item.cover_i}
+          title={item.title}
+          worksKey={item.key}
+        />
       )}
       keyExtractor={(item, index) => index.toString()}
       onEndReached={() => {
@@ -67,8 +77,9 @@ const styles = StyleSheet.create({
     position: "relative",
     borderRadius: 20,
     marginBottom: 20,
-    backgroundColor: "white",
-    elevation: 4,
+    backgroundColor: "#f2f2f2",
+    elevation: 5,
+    
   },
   itemOne: {
     height: 200,

@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   title: {
-    paddingTop: 40,
+    paddingTop: 20,
     fontWeight: "bold",
     width: "100%",
     fontSize: 32,
@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
+    
   },
   button: {},
   list: {

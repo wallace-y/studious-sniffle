@@ -1,8 +1,7 @@
 - [x] Implement infinity scroll
-- [] Implement local storage
 - [x] Shape up styling across the app
 - [] Add an info link with backlink to GitHub
-- [] Add back links to Open Library from images
+- [x] Add back links to Open Library from images
 - [x] Style top banner
 - [x] Style main content
 - [] Add detail page for each book
