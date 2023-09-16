@@ -7,7 +7,7 @@ base_url = "https://openlibrary.org/search.json?q=";
 
 async function search(query, limit) {
   try {
-    const response = await axios.get(`${base_url}${query}&limit=${limit}`);
+    const response = await axios.get(`${base_url}${query}`);
     return response.data.docs;
   } catch (error) {
     throw error;

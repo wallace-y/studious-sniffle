@@ -4,12 +4,11 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
   Button,
   SafeAreaView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { search } from "../utils/search.js";
 import ListOfBooks from "./ListOfBooks.jsx";
 import loadingData from "../assets/data.js";
@@ -19,6 +18,7 @@ export default function SearchBar() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(loadingData);
+  const [page, setPage] = useState(1);
 
   async function handleSearch(e) {
     // prevent default form behaviour
@@ -28,8 +28,7 @@ export default function SearchBar() {
     if (query !== "") {
       try {
         // get input form search API
-        // TO DO: Limit is hard-coded as 10 for now
-        await search(query, 20).then((res) => {
+        await search(query).then((res) => {
           setData(res);
         });
       } catch (err) {

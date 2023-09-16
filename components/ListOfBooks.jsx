@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   SafeAreaView,
@@ -21,7 +21,6 @@ const Item = ({ title, cover, index }) => {
     itemStyle = styles.itemRight;
   }
 
-
   return (
     <View style={[styles.item, itemStyle]}>
       <Image
@@ -36,15 +35,20 @@ const Item = ({ title, cover, index }) => {
 
 const ListOfBooks = ({ data }) => {
   const filteredData = data.filter((item) => item.cover_i);
-
+  const [loadNum, setLoadNum] = useState(20);
   return (
     <FlatList
       data={filteredData}
       numColumns={2}
+      initialNumToRender={loadNum}
       renderItem={({ item, index }) => (
         <Item index={index} cover={item.cover_i} title={item.title} />
       )}
       keyExtractor={(item, index) => index.toString()}
+      onEndReached={() => {
+        setLoadNum(loadNum + 20);
+      }}
+      onEndReachedThreshold={0.1}
     />
   );
 };
