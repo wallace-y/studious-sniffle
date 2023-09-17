@@ -73,9 +73,7 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     margin: 8,
-    width: "46%",
-    position: "relative",
-    borderRadius: 20,
+    borderRadius: 15,
     marginBottom: 20,
     backgroundColor: "#f2f2f2",
     elevation: 5,
@@ -96,28 +94,9 @@ const styles = StyleSheet.create({
   itemRight: {
     height: 250,
   },
-  title: {
-    fontSize: 16,
-    textAlign: "center",
-    marginBottom: 5,
-  },
-  title: {
-    fontSize: 20,
-    textAlign: "center",
-    marginBottom: 5,
-    position: "absolute", // Position the title absolutely
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    color: "#fff", // Text color
-    padding: 5, // Adjust padding as needed
-  },
-
   cover: {
-    // backgroundColor: CanvasGradient(),
-    width: "96%",
-    height: "96%",
+    width: "100%",
+    height: "100%",
     resizeMode: "contain",
     borderRadius: 15,
   },

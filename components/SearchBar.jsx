@@ -7,13 +7,14 @@ import {
   View,
   Button,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { search } from "../utils/search.js";
 import ListOfBooks from "./ListOfBooks.jsx";
 import loadingData from "../assets/data.js";
 
-export default function SearchBar() {
+export default function SearchBar({ navigation }) {
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,8 +22,6 @@ export default function SearchBar() {
   const [page, setPage] = useState(1);
 
   async function handleSearch(e) {
-    // prevent default form behaviour
-    e.preventDefault();
     setLoading(true);
     // check for valid query then execute
     if (query !== "") {
@@ -44,27 +43,36 @@ export default function SearchBar() {
     }
   }
 
+  const showInfo = () => {
+    navigation.navigate("Info");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBar}>
-        <View>
+        <View style={styles.header}>
           <Text style={styles.title}>Book Scroller</Text>
-          {error != "" ? (
-            <View style={styles.errorBox}>
-              <Text style={styles.errorMessage}>
-                "To err is human; to forgive, divine." - Alexander Pope.
-              </Text>
-              <Text style={styles.errorMessage}>
-                Looks like we have a problem. If you can send a screenshot of
-                the issue we can investigate further.
-              </Text>
-              <Text style={styles.errorMessage}>Error: {error}</Text>
-            </View>
-          ) : (
-            false
-          )}
+          <TouchableOpacity onPress={showInfo}>
+            <Text style={styles.infoButton}>ℹ️ Info</Text>
+          </TouchableOpacity>
         </View>
         <View>
+          <View>
+            {error != "" ? (
+              <View style={styles.errorBox}>
+                <Text style={styles.errorMessage}>
+                  "To err is human; to forgive, divine." - Alexander Pope.
+                </Text>
+                <Text style={styles.errorMessage}>
+                  Looks like we have a problem. If you can send a screenshot of
+                  the issue we can investigate further.
+                </Text>
+                <Text style={styles.errorMessage}>Error: {error}</Text>
+              </View>
+            ) : (
+              false
+            )}
+          </View>
           {/* conditionally loading the search bar */}
           {loading ? (
             <View>
@@ -107,21 +115,25 @@ export default function SearchBar() {
 }
 
 const styles = StyleSheet.create({
-  list: {},
   container: {
-    width: "100%",
     backgroundColor: "#fff",
     padding: 20,
   },
   searchBar: {
     borderBottomWidth: 2,
   },
+  header: {
+    paddingTop: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   title: {
-    paddingTop: 20,
     fontWeight: "bold",
-    width: "100%",
-    fontSize: 32,
-    textAlign: "center",
+    fontSize: 30,
+  },
+  infoButton: {
+    fontSize: 18,
   },
   loadingMessage: {
     padding: 5,
@@ -132,19 +144,16 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     padding: 5,
-    width: "100%",
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
     color: "#b22222",
   },
   inputContainer: {
-    alignSelf: "center",
-    width: "90%",
     flexDirection: "row",
     borderWidth: 1,
     borderColor: "black",
-    marginBottom: 5,
+    marginBottom: 10,
   },
   input: {
     flex: 1,
@@ -153,9 +162,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    
   },
-  button: {},
   list: {
     marginBottom: 150,
   },
