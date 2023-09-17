@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Linking,
   Text,
-  Animated
 } from "react-native";
 
 const Item = ({ title, cover, worksKey, index }) => {
@@ -44,14 +43,12 @@ const ListOfBooks = ({ data }) => {
   const flatListRef = useRef(null);
   const filteredData = data.filter((item) => item.cover_i);
   const endIndex = Math.min(filteredData.length / 2) - 1;
-  const scrollY = useRef(new Animated.Value(0)).current;
-
 
   const scrollToEnd = async () => {
     if (flatListRef.current) {
       for (let i = 0; i < endIndex; i++) {
         try {
-          await new Promise((resolve) => setTimeout(resolve, 1000));
+          await new Promise((resolve) => setTimeout(resolve, 750));
           flatListRef.current.scrollToIndex({
             animated: true,
             index: i,
@@ -69,7 +66,7 @@ const ListOfBooks = ({ data }) => {
           scrollToEnd();
         }}
       >
-        <Text>Auto Scroll</Text>
+        <Text style={styles.autoScroll}>Auto Scroll</Text>
       </TouchableOpacity>
       <FlatList
         ref={flatListRef}
@@ -95,6 +92,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     flexWrap: "wrap",
+  },
+  autoScroll: {
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 15,
   },
   item: {
     flex: 1,
