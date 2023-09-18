@@ -4,7 +4,7 @@
     "slug": "rn-books",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/book_3927601.svg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",

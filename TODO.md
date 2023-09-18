@@ -1,7 +1,0 @@
-- [x] Implement infinity scroll
-- [x] Shape up styling across the app
-- [x] Add an info link with backlink to GitHub
-- [x] Add back links to Open Library from images
-- [x] Style top banner
-- [x] Style main content
-- [] Add auto scroll feature 
