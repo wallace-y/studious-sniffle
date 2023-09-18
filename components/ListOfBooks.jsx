@@ -48,9 +48,8 @@ const ListOfBooks = ({ data }) => {
     if (flatListRef.current) {
       for (let i = 0; i < endIndex; i++) {
         try {
-          await new Promise((resolve) => setTimeout(resolve, 750));
+          await new Promise((resolve) => setTimeout(resolve, 500));
           flatListRef.current.scrollToIndex({
-            animated: true,
             index: i,
           });
         } catch (err) {
