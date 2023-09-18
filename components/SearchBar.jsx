@@ -47,6 +47,7 @@ export default function SearchBar({ navigation }) {
     navigation.navigate("Info");
   };
 
+
   return (
     <View style={styles.container}>
       <View style={styles.searchBar}>
@@ -100,6 +101,7 @@ export default function SearchBar({ navigation }) {
             </View>
           )}
         </View>
+
       </View>
 
       {/* Search Bar Output conditionally loaded */}

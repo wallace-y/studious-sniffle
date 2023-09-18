@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import {
   View,
@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   Linking,
+  Text,
 } from "react-native";
 
 const Item = ({ title, cover, worksKey, index }) => {
@@ -39,27 +40,48 @@ const Item = ({ title, cover, worksKey, index }) => {
 };
 
 const ListOfBooks = ({ data }) => {
+  const flatListRef = useRef(null);
   const filteredData = data.filter((item) => item.cover_i);
-  const [loadNum, setLoadNum] = useState(20);
+  const endIndex = Math.min(filteredData.length / 2) - 1;
+
+  const scrollToEnd = async () => {
+    if (flatListRef.current) {
+      for (let i = 0; i < endIndex; i++) {
+        try {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          flatListRef.current.scrollToIndex({
+            index: i,
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+  };
   return (
-    <FlatList
-      data={filteredData}
-      numColumns={2}
-      initialNumToRender={loadNum}
-      renderItem={({ item, index }) => (
-        <Item
-          index={index}
-          cover={item.cover_i}
-          title={item.title}
-          worksKey={item.key}
-        />
-      )}
-      keyExtractor={(item, index) => index.toString()}
-      onEndReached={() => {
-        setLoadNum(loadNum + 20);
-      }}
-      onEndReachedThreshold={0.1}
-    />
+    <View>
+      <TouchableOpacity
+        onPress={() => {
+          scrollToEnd();
+        }}
+      >
+        <Text style={styles.autoScroll}>Auto Scroll</Text>
+      </TouchableOpacity>
+      <FlatList
+        ref={flatListRef}
+        data={filteredData}
+        numColumns={2}
+        renderItem={({ item, index }) => (
+          <Item
+            index={index}
+            cover={item.cover_i}
+            title={item.title}
+            worksKey={item.key}
+          />
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </View>
   );
 };
 
@@ -70,6 +92,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexWrap: "wrap",
   },
+  autoScroll: {
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 15,
+  },
   item: {
     flex: 1,
     margin: 8,
@@ -77,7 +104,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "#f2f2f2",
     elevation: 5,
-    
   },
   itemOne: {
     height: 200,
