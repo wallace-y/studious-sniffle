@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Linking,
   Text,
+  AccessibilityInfo,
 } from "react-native";
 
 const Item = ({ title, cover, worksKey, index }) => {
@@ -27,6 +28,7 @@ const Item = ({ title, cover, worksKey, index }) => {
         onPress={() => {
           Linking.openURL(`https://openlibrary.org${worksKey}`);
         }}
+        accessibilityLabel={title}
       >
         <Image
           style={styles.cover}
