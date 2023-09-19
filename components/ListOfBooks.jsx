@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Card } from "react-native-paper";
 import axios from "axios";
 import {
   View,
@@ -7,9 +8,9 @@ import {
   Image,
   TouchableOpacity,
   Linking,
-  Text,
   AccessibilityInfo,
 } from "react-native";
+import { Button, Text, Divider } from "react-native-paper";
 
 const Item = ({ title, cover, worksKey, index }) => {
   let itemStyle = styles.itemLeft; // Default style
@@ -23,19 +24,20 @@ const Item = ({ title, cover, worksKey, index }) => {
   }
 
   return (
-    <View style={[styles.item, itemStyle]}>
+    <View style={[styles.item]}>
       <TouchableOpacity
         onPress={() => {
           Linking.openURL(`https://openlibrary.org${worksKey}`);
         }}
         accessibilityLabel={title}
       >
-        <Image
-          style={styles.cover}
-          source={{
-            uri: `https://covers.openlibrary.org/b/id/${cover}-M.jpg`,
-          }}
-        />
+        <Card>
+          <Card.Cover
+            source={{
+              uri: `https://covers.openlibrary.org/b/id/${cover}-M.jpg`,
+            }}
+          />
+        </Card>
       </TouchableOpacity>
     </View>
   );
@@ -62,13 +64,17 @@ const ListOfBooks = ({ data }) => {
   };
   return (
     <View>
-      <TouchableOpacity
+      <Button
+        style={styles.button}
+        mode="contained"
+        textColor="white"
         onPress={() => {
           scrollToEnd();
         }}
       >
-        <Text style={styles.autoScroll}>Auto Scroll</Text>
-      </TouchableOpacity>
+        Auto Scroll
+      </Button>
+      <Divider bold="true" />
       <FlatList
         ref={flatListRef}
         data={filteredData}
@@ -94,11 +100,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexWrap: "wrap",
   },
-  autoScroll: {
-    textAlign: "center",
-    fontSize: 20,
-    marginBottom: 15,
+  button: {
+    marginBottom: 5,
   },
+
   item: {
     flex: 1,
     margin: 8,

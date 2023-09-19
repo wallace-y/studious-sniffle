@@ -2,7 +2,7 @@
   "expo": {
     "name": "rn-books",
     "slug": "rn-books",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/book.png",
     "userInterfaceStyle": "light",
@@ -17,14 +17,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/book.png",
+        "foregroundImage": "./assets/book-64.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.wallacey.rnbooks",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
-      "favicon": "./assets/book.png"
+      "favicon": "./assets/book-64.png"
     },
     "extra": {
       "eas": {
