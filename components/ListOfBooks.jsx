@@ -11,6 +11,7 @@ import {
   AccessibilityInfo,
 } from "react-native";
 import { Button, Text, Divider } from "react-native-paper";
+import { colors } from "../assets/colors";
 
 const Item = ({ title, cover, worksKey, index }) => {
   let itemStyle = styles.itemLeft; // Default style
@@ -68,6 +69,7 @@ const ListOfBooks = ({ data }) => {
         style={styles.button}
         mode="contained"
         textColor="white"
+        buttonColor={colors.secondary}
         onPress={() => {
           scrollToEnd();
         }}

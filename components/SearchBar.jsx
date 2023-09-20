@@ -10,6 +10,7 @@ import { Button, Text, Searchbar } from "react-native-paper";
 import { search } from "../utils/search.js";
 import ListOfBooks from "./ListOfBooks.jsx";
 import loadingData from "../assets/data.js";
+import { colors } from "../assets/colors.js";
 
 export default function SearchBar({ navigation }) {
   const [query, setQuery] = useState("");
@@ -45,13 +46,13 @@ export default function SearchBar({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.searchBar}>
+      <View>
         <View style={styles.header}>
           <Text variant="displaySmall">Book Scroller</Text>
         </View>
         <View>
           <TouchableOpacity onPress={showInfo}>
-            <Button icon="information">Info</Button>
+            <Button icon="information" textColor={colors.text}>Info</Button>
           </TouchableOpacity>
         </View>
         <View>
@@ -83,6 +84,8 @@ export default function SearchBar({ navigation }) {
           ) : (
             <View style={styles.inputContainer}>
               <Searchbar
+                style={styles.searchBar}
+                placeholderTextColor="white"
                 placeholder="Search"
                 onChangeText={(text) => setQuery(text)}
                 onSubmitEditing={handleSearch}
@@ -107,10 +110,9 @@ export default function SearchBar({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
     padding: 20,
   },
-
   header: {
     paddingTop: 20,
     alignItems: "center",
@@ -119,9 +121,14 @@ const styles = StyleSheet.create({
   errorMessage: {
     marginBottom: 5,
     textAlign: "center",
+    color: colors.secondary,
   },
   inputContainer: {
     marginBottom: 10,
+  },
+  searchBar: {
+    backgroundColor: colors.primary,
+    color: "white"
   },
   input: {
     flex: 1,
