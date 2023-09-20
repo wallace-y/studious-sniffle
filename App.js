@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Info from "./components/Info";
+import { colors } from "./assets/colors";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,5 +28,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     alignItems: "center",
+    color: colors.text
   },
 });

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Linking, TouchableOpacity } from "react-native";
 import { Button, Divider, Text } from "react-native-paper";
+import { colors } from "../assets/colors";
 
 const Info = ({ navigation }) => {
   return (
@@ -19,6 +20,7 @@ const Info = ({ navigation }) => {
           style={styles.button}
           mode="contained"
           textColor="white"
+          buttonColor={colors.primary}
           onPress={() => Linking.openURL("https://github.com/wallace-y")}
         >
           Find me on GitHub
@@ -27,6 +29,7 @@ const Info = ({ navigation }) => {
           style={styles.button}
           mode="contained"
           textColor="white"
+          buttonColor={colors.primary}
           onPress={() =>
             Linking.openURL("https://github.com/wallace-y/studious-sniffle")
           }
@@ -37,6 +40,7 @@ const Info = ({ navigation }) => {
           style={styles.button}
           mode="contained"
           textColor="white"
+          buttonColor={colors.primary}
           onPress={() => navigation.goBack()}
         >
           Go Back
@@ -45,6 +49,7 @@ const Info = ({ navigation }) => {
           style={styles.button}
           mode="contained"
           textColor="white"
+          buttonColor={colors.primary}
           onPress={() =>
             Linking.openURL("https://www.flaticon.com/free-icons/book")
           }
