@@ -4,10 +4,10 @@
     "slug": "rn-books",
     "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/book.png",
+    "icon": "./assets/UcD46js4hzqG_512_512.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/book.png",
+      "image": "./assets/UcD46js4hzqG_512_512.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,14 +17,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/book-64.png",
+        "foregroundImage": "./assets/UcD46js4hzqG_512_512.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.wallacey.rnbooks",
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
-      "favicon": "./assets/book-64.png"
+      "favicon": "./assets/UcD46js4hzqG_512_512.png"
     },
     "extra": {
       "eas": {
